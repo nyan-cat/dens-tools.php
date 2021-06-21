@@ -1,0 +1,9 @@
+{
+    "name": "nyan-cat/dens-tools",
+    "type": "library",
+    "description": "Collection of PHP tools for web and general backend development",
+    "require": {
+        "opis/closure": "^3.6",
+        "swaggest/json-schema": "^0.12.35"
+    }
+}
