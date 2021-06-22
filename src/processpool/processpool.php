@@ -18,18 +18,13 @@ class ProcessPool
         $this->handlers[$key] = $handler;
     }
 
-    function run($quota = 0, $shuffle = false)
+    function run($quota = 0)
     {
         $start = time();
 
         if(empty($this->tasks))
         {
             return;
-        }
-
-        if($shuffle)
-        {
-            $this->shuffle();
         }
 
         do
@@ -110,20 +105,6 @@ class ProcessPool
                 $this->responses[$key] .= fread($proc, 65536);
             }
         }
-    }
-
-    private function shuffle()
-    {
-        $keys = array_keys($this->tasks);
-        shuffle($keys);
-        $shuffled = [];
-
-        foreach($keys as $key)
-        {
-            $shuffled[$key] = $this->tasks[$key];
-        }
-
-        $this->tasks = $shuffled;
     }
 
     private $size;
