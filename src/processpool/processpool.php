@@ -16,6 +16,21 @@ class ProcessPool
         $key = $this->key++;
         $this->tasks[$key] = $task;
         $this->handlers[$key] = $handler;
+        return $key;
+    }
+
+    function cancel($key)
+    {
+        if(isset($this->tasks[$key]))
+        {
+            unset($this->tasks[$key]);
+            unset($this->handlers[$key]);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     function run($quota = 0)
